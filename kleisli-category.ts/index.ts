@@ -1,4 +1,7 @@
 
+/**
+ * Original translation using <bool,string> pairs
+ */
 export const composeWithBooleansLogger = () => {
 
     type Pair<A,S> = [ A,S ]
@@ -17,7 +20,9 @@ export const composeWithBooleansLogger = () => {
     console.log(negateTwice)
 
 }
-
+/**
+ * Abstracting the join function
+ */
 export const composeWithGenericsLogger_Negate = () => {
     type Pair<A,S> = [ A,S ]
     type F<A,S> = (a:A) => Pair<A,S>
@@ -34,11 +39,14 @@ export const composeWithGenericsLogger_Negate = () => {
 
     const appendLog = (a:string, b:string):string => a.concat(b)
     const composeWithLogging = compose<boolean,string>( appendLog )
-    const negateV2 = composeWithLogging( negate )( negate )(true)
+    const doubleNegationResult = composeWithLogging( negate )( negate )(true)
 
-    console.log(negateV2)
+    console.log(doubleNegationResult)
 }
 
+/**
+ * Using number => number functions
+ */
 export const composeWithGenericsLogger_Add10Duplicate = () => {
     type Pair<A,S> = [ A,S ]
     type F<A,S> = (a:A) => Pair<A,S>
@@ -63,6 +71,9 @@ export const composeWithGenericsLogger_Add10Duplicate = () => {
 
 }
 
+/**
+ * Using diffrent types compositions
+ */
 export const composeWithGenericsLogger_add10I_after_isOdd = () => {
     type Pair<A,S> = [ A,S ]
     type Fn<A,B,S> = (a:A) => Pair<B,S>
